@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>China 2026 · Ellen's Trip Itinerary</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF8F5;
+      --dark: #1C1C1E;
+      --gold: #C9A84C;
+      --red: #B5001F;
+      --text-muted: #7A7A7A;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      background: rgba(20,20,22,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 0 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 3px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ─── HERO ─── */
+    .hero {
+      height: 100vh;
+      min-height: 600px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, #1A0A0A 0%, #2C1810 35%, #0D1A2A 80%, #080808 100%);
+    }
+    .hero-bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.pexels.com/photos/30944531/pexels-photo-30944531.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.12;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      color: white;
+      line-height: 1.05;
+      margin-bottom: 0.5rem;
+    }
+    .hero-title em { color: var(--gold); font-style: italic; }
+    .hero-subtitle {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 2px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+    }
+    .hero-pill {
+      padding: 0.55rem 1.4rem;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.18);
+      transition: background 0.2s, color 0.2s;
+    }
+    .hero-pill:first-child { border-radius: 4px 0 0 4px; }
+    .hero-pill:last-child { border-radius: 0 4px 4px 0; }
+    .hero-pill:hover { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.3);
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(201,168,76,0.6), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse { 0%,100%{opacity:0.4} 50%{opacity:1} }
+
+    /* ─── OVERVIEW ─── */
+    .overview {
+      background: var(--dark);
+      padding: 5rem 2.5rem;
+    }
+    .overview-inner { max-width: 1100px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 2.5rem;
+    }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 0;
+    }
+    .tl-item {
+      border-left: 2px solid rgba(201,168,76,0.25);
+      padding: 1rem 1.2rem 1rem 1.4rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .tl-item:hover { background: rgba(255,255,255,0.04); }
+    .tl-dot {
+      position: absolute;
+      left: -5px;
+      top: 1.35rem;
+      width: 8px; height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+    .tl-date { font-size: 0.65rem; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+    .tl-city { font-family: 'Playfair Display', serif; font-size: 1rem; color: white; margin: 0.2rem 0; }
+    .tl-desc { font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.4; }
+
+    /* ─── CITY SECTION ─── */
+    .city-hero {
+      height: 55vh;
+      min-height: 350px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+    }
+    .city-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+    }
+    .city-hero-text {
+      position: relative;
+      z-index: 1;
+      padding: 2.5rem 3rem;
+      color: white;
+    }
+    .city-day {
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .city-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      line-height: 1;
+    }
+    .city-tagline {
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.65);
+      margin-top: 0.4rem;
+    }
+
+    .section-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: white;
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.07);
+      margin-bottom: 1.2rem;
+    }
+    .card-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hlist { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .hlist li {
+      font-size: 0.88rem;
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+    .hlist li::before { content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 0.05rem; }
+
+    /* ─── SCHEDULE ─── */
+    .sched { display: flex; flex-direction: column; gap: 0.85rem; }
+    .sched-row { display: grid; grid-template-columns: 72px 1fr; gap: 0.6rem; align-items: start; }
+    .sched-time {
+      font-size: 0.62rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--gold);
+      padding-top: 0.18rem;
+      line-height: 1.3;
+    }
+    .sched-desc { font-size: 0.87rem; line-height: 1.55; }
+
+    /* ─── FOOD GRID ─── */
+    .food-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+    }
+    .food-item {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 0.8rem;
+    }
+    .food-name { font-weight: 600; font-size: 0.82rem; margin-bottom: 0.2rem; }
+    .food-desc { font-size: 0.75rem; color: var(--text-muted); line-height: 1.4; }
+
+    /* ─── CALLOUT BOXES ─── */
+    .box-gold {
+      background: linear-gradient(135deg, #FFF9E6, #FFF3C9);
+      border: 1px solid rgba(201,168,76,0.5);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .box-gold-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8B6914;
+      margin-bottom: 0.5rem;
+    }
+    .box-gold p { font-size: 0.88rem; color: #5C4018; line-height: 1.7; }
+
+    .box-red {
+      background: #FFF0F2;
+      border: 1px solid rgba(181,0,31,0.25);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .box-red p { font-size: 0.88rem; color: #8B0010; line-height: 1.7; }
+
+    .box-blue {
+      background: linear-gradient(135deg, #EEF3FF, #E8EDFF);
+      border: 1px solid rgba(80,100,220,0.25);
+      border-radius: 12px;
+      padding: 1.3rem 1.5rem;
+      margin-top: 1rem;
+    }
+    .box-blue p { font-size: 0.88rem; color: #2D3A8C; line-height: 1.7; }
+
+    .highlight-bar {
+      border-left: 3px solid var(--gold);
+      padding: 0.8rem 1.2rem;
+      background: rgba(201,168,76,0.06);
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    /* ─── TAGS ─── */
+    .tag {
+      display: inline-block;
+      background: var(--gold);
+      color: #1C1C1E;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      padding: 0.18rem 0.55rem;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-left: 0.3rem;
+    }
+    .tag-green { background: #2D9B6E; color: white; }
+    .tag-red { background: var(--red); color: white; }
+
+    /* ─── IMG CARD ─── */
+    .img-card {
+      border-radius: 14px;
+      overflow: hidden;
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      margin-bottom: 1.2rem;
+    }
+    .img-card-label {
+      position: absolute;
+      bottom: 0.7rem;
+      left: 0.7rem;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      color: white;
+      font-size: 0.72rem;
+      padding: 0.28rem 0.7rem;
+      border-radius: 20px;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(0,0,0,0.08), transparent);
+    }
+
+    /* ─── TRAIN INTERLUDE ─── */
+    .train-band {
+      background: #0C1520;
+      color: white;
+      padding: 5rem 2.5rem;
+      text-align: center;
+    }
+    .train-inner { max-width: 720px; margin: 0 auto; }
+    .train-route {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .train-city { font-family: 'Playfair Display', serif; font-size: 2rem; }
+    .train-arrow { color: var(--gold); font-size: 2.5rem; }
+    .train-details {
+      color: rgba(255,255,255,0.55);
+      font-size: 0.9rem;
+      line-height: 1.9;
+    }
+
+    /* ─── DEPARTURE ─── */
+    .departure-band {
+      background: var(--dark);
+      color: white;
+      padding: 5rem 2.5rem;
+      text-align: center;
+    }
+    .departure-inner { max-width: 680px; margin: 0 auto; }
+    .dep-time {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 14vw, 8rem);
+      color: var(--gold);
+      line-height: 1;
+      margin: 0.5rem 0;
+    }
+    .dep-sub { font-size: 1rem; color: rgba(255,255,255,0.45); letter-spacing: 2px; }
+    .dep-note {
+      margin-top: 2rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.9rem;
+      line-height: 1.9;
+    }
+    .farewell {
+      margin-top: 2.5rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      color: rgba(255,255,255,0.5);
+      font-size: 1rem;
+      letter-spacing: 1px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #111;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      letter-spacing: 1px;
+    }
+
+    /* ─── SCROLL FADE ─── */
+    .fade {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade.visible { opacity: 1; transform: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .two-col { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .city-hero-text { padding: 1.5rem 1.5rem; }
+      .section-body { padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">中国 · 2026</div>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#hongkong">Hong Kong</a></li>
+      <li><a href="#shenzhen">Shenzhen</a></li>
+      <li><a href="#xiamen">Xiamen</a></li>
+      <li><a href="#shanghai">Shanghai</a></li>
+      <li><a href="#departure">Departure</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-bg-img"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Ellen's Trip Itinerary</div>
+      <h1 class="hero-title">China <em>2026</em></h1>
+      <div class="hero-subtitle">March 28 – April 5 &nbsp;·&nbsp; 9 Days</div>
+      <div class="hero-pills">
+        <div class="hero-pill">✈ Hong Kong</div>
+        <div class="hero-pill">🏙 Shenzhen</div>
+        <div class="hero-pill">🌊 Xiamen</div>
+        <div class="hero-pill">🌆 Shanghai</div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+  </div>
+
+  <!-- OVERVIEW -->
+  <div class="overview" id="overview">
+    <div class="overview-inner">
+      <div class="eyebrow">Full Itinerary</div>
+      <h2 class="section-title" style="color:white">Your Trip at a Glance</h2>
+      <div class="timeline-grid">
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 28–29</div>
+          <div class="tl-city">✈️ Depart</div>
+          <div class="tl-desc">Fly from the US to Hong Kong</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 30</div>
+          <div class="tl-city">🏙 HK + SZ</div>
+          <div class="tl-desc">Land ~5AM → Shenzhen hotel → afternoon in HK</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Mar 31</div>
+          <div class="tl-city">🏢 Shenzhen</div>
+          <div class="tl-desc">Full day — art, food, city vibes</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 1</div>
+          <div class="tl-city">🌊 Xiamen</div>
+          <div class="tl-desc">Train from SZ → arrive &amp; explore</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 2</div>
+          <div class="tl-city">🏝 Xiamen</div>
+          <div class="tl-desc">Gulangyu Island → overnight bullet train</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 3</div>
+          <div class="tl-city">🌆 Shanghai</div>
+          <div class="tl-desc">Arrive early + mom's health checkups</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 4</div>
+          <div class="tl-city">🏯 Shanghai</div>
+          <div class="tl-desc">Yu Garden · TeamLab · Bund · Studio (TBD)</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-date">Apr 5</div>
+          <div class="tl-city">✈️ Depart</div>
+          <div class="tl-desc">PVG flight at 5:20PM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ HONG KONG -->
+  <div id="hongkong">
+    <div class="city-hero" style="background-image:url('https://images.pexels.com/photos/5607794/pexels-photo-5607794.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1'); background-color:#0D1525;">
+      <div class="city-hero-text">
+        <div class="city-day">March 30 · Partial Day</div>
+        <div class="city-name">Hong Kong</div>
+        <div class="city-tagline">Morning landing → Drop bags in SZ → Afternoon &amp; evening in HK</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="two-col fade">
+        <div>
+          <div class="eyebrow">You've already done Victoria Peak</div>
+          <h2 class="section-title">New Sides of HK</h2>
+          <div class="highlight-bar">
+            You land ~5AM. Take the Airport Express or cross-border coach to Shenzhen, check in, freshen up — then head back into HK via the MTR for a proper afternoon. Focus on <strong>Kowloon-side</strong> to keep travel efficient.
+          </div>
+          <div class="card">
+            <div class="card-head">🗺️ What to See (Beyond the Peak)</div>
+            <ul class="hlist">
+              <li><strong>Tsim Sha Tsui Waterfront</strong> — Stroll the Avenue of Stars along Victoria Harbour. The skyline views are just as good as the Peak, and it's flat. Go in the evening for the neon lights.</li>
+              <li><strong>Mong Kok (旺角)</strong> — The most densely local neighbourhood in HK. Ladies' Market, Temple Street, Goldfish Market. Snack your way through stalls. Best around 7–10PM.</li>
+              <li><strong>Sham Shui Po</strong> — Gritty, working-class, beloved by locals. Cheap dai pai dong stalls, fabric markets, old-school HK feel.</li>
+              <li><strong>Temple Street Night Market</strong> — Classic night-market energy. Street food, fortune tellers, stalls. Peaks after 8PM.</li>
+            </ul>
+          </div>
+          <div class="box-gold">
+            <div class="box-gold-label">🚇 Logistics</div>
+            <p>Cross into HK via <strong>Lo Wu</strong> or <strong>Lok Ma Chau</strong> MTR border crossing. Tsim Sha Tsui is a 20-minute ride from the border. Stay Kowloon-side — no need to cross the harbour. Head back to Shenzhen by midnight via the last MTR train (check border crossing hours).</p>
+          </div>
+        </div>
+        <div>
+          <div class="img-card" style="background-image:url('https://images.pexels.com/photos/4513862/pexels-photo-4513862.jpeg?auto=compress&cs=tinysrgb&w=1000&h=600&dpr=1'); background-color:#0D1525; height:240px;">
+            <div class="img-card-label">Victoria Harbour from Tsim Sha Tsui</div>
+          </div>
+          <div class="card">
+            <div class="card-head">🍜 Must-Eat in Hong Kong</div>
+            <div class="food-grid">
+              <div class="food-item">
+                <div class="food-name">☕ HK Milk Tea + Toast</div>
+                <div class="food-desc">Silky pulled milk tea &amp; condensed milk toast at a cha chaan teng. Try Mido Café in Yau Ma Tei.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍜 Wonton Noodles</div>
+                <div class="food-desc">Delicate shrimp wontons in thin springy noodles &amp; clear broth. A HK staple morning or night.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🧇 Egg Waffles (雞蛋仔)</div>
+                <div class="food-desc">Bubble waffles — crispy outside, soft inside. Modern versions add matcha or ice cream.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🦆 Roast Goose</div>
+                <div class="food-desc">Cantonese roast goose — crackling skin, juicy meat over rice. Yat Lok near Central is iconic.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍢 Curry Fish Balls</div>
+                <div class="food-desc">Street stall classic — bouncy fish balls in a fragrant spiced curry sauce on a skewer.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🥭 Mango Pomelo Sago</div>
+                <div class="food-desc">Chilled dessert soup of mango, pomelo &amp; sago in coconut milk. Perfect for the afternoon.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════ SHENZHEN -->
+  <div id="shenzhen">
+    <div class="city-hero" style="background-image:url('https://images.pexels.com/photos/20828135/pexels-photo-20828135.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1'); background-color:#001830;">
+      <div class="city-hero-text">
+        <div class="city-day">March 31 · Full Day</div>
+        <div class="city-name">Shenzhen</div>
+        <div class="city-tagline">China's innovation capital — art villages, tech markets &amp; Cantonese food</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="two-col fade">
+        <div>
+          <div class="eyebrow">Day 4 — Full Day</div>
+          <h2 class="section-title">The Best of SZ</h2>
+          <div class="card">
+            <div class="card-head">🗺️ Things to Do</div>
+            <ul class="hlist">
+              <li><strong>Dafen Oil Painting Village (大芬油画村)</strong> — An entire village of working artists and studios. Browse originals, commission a portrait, or just wander between the canvases. Completely unique to Shenzhen.</li>
+              <li><strong>OCT LOFT (华侨城创意文化园)</strong> — Creative district built in repurposed factory spaces. Independent galleries, specialty coffee, boutiques. Great morning vibe.</li>
+              <li><strong>Lianhua Mountain Park (莲花山公园)</strong> — Where locals do tai chi and fly kites. Easy walk, sweeping views of the city skyline. Relaxed and very local.</li>
+              <li><strong>Huaqiangbei Electronics Market (华强北)</strong> — Even if you don't buy anything, walking through the world's largest electronics market is a spectacle. Great for phone accessories or anything tech.</li>
+            </ul>
+          </div>
+          <div class="box-gold">
+            <div class="box-gold-label">📅 Suggested Day Flow</div>
+            <p><strong>Morning:</strong> OCT LOFT for breakfast/coffee<br>
+            <strong>Midday:</strong> Dafen Oil Painting Village<br>
+            <strong>Afternoon:</strong> Huaqiangbei OR Lianhua Mountain<br>
+            <strong>Evening:</strong> Local dai pai dong night food stalls</p>
+          </div>
+        </div>
+        <div>
+          <div class="img-card" style="background-image:url('https://images.pexels.com/photos/4538276/pexels-photo-4538276.jpeg?auto=compress&cs=tinysrgb&w=1000&h=600&dpr=1'); background-color:#1a3050; height:200px;">
+            <div class="img-card-label">Dafen Oil Painting Village</div>
+          </div>
+          <div class="card">
+            <div class="card-head">🍽️ Must-Eat in Shenzhen</div>
+            <div class="food-grid">
+              <div class="food-item">
+                <div class="food-name">🍱 Chang Fen (肠粉)</div>
+                <div class="food-desc">Silky rice noodle rolls with shrimp or pork &amp; sweet soy sauce. The quintessential Cantonese morning.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍚 Claypot Rice (煲仔饭)</div>
+                <div class="food-desc">Rice with lap cheong &amp; mushrooms in a clay pot; the crispy bottom crust is the best bite.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🦆 Roast Goose &amp; Squab</div>
+                <div class="food-desc">Even better than HK. Look for 石岐乳鸽 (Shiqi-style squab) while in Guangdong.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍲 Seafood Hot Pot</div>
+                <div class="food-desc">Light, sweet fish-bone broth with fresh shrimp, crab &amp; clam. Not spicy — pure seafood flavor.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍮 Sugar Water (糖水)</div>
+                <div class="food-desc">Sweet soup dessert — lotus seed, longan, or red bean. Hot or iced. The Cantonese answer to dessert.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🥟 Dim Sum</div>
+                <div class="food-desc">Siu mai, har gow, cheung fun — order early at a local teahouse, never a chain.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════════ XIAMEN -->
+  <div id="xiamen">
+    <div class="city-hero" style="background-image:url('https://images.pexels.com/photos/18137607/pexels-photo-18137607.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1'); background-color:#004D50;">
+      <div class="city-hero-text">
+        <div class="city-day">April 1–2 · Two Days</div>
+        <div class="city-name">Xiamen</div>
+        <div class="city-tagline">Garden on the Sea — colonial islands, seafood &amp; the calmest city in China</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="two-col fade">
+        <div>
+          <div class="eyebrow">Days 5–6</div>
+          <h2 class="section-title">Two Days in Xiamen</h2>
+          <div class="card">
+            <div class="card-head">🗓️ Day 1 (Apr 1) — Arrive &amp; Settle</div>
+            <ul class="hlist">
+              <li>High-speed train from Shenzhen North → Xiamen North, ~3.5 hours. Book on 12306 or Ctrip in advance.</li>
+              <li><strong>Zhongshan Road (中山路)</strong> — Xiamen's famous pedestrian street. Arrive, check in, then stroll. Packed with local snack shops and old Amoy shophouse architecture.</li>
+              <li><strong>Zeng Cuo'an (曾厝垵)</strong> — Former fishing village turned creative quarter. Perfect for an evening wander — street food, independent cafés, great atmosphere after dark.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="card-head">🗓️ Day 2 (Apr 2) — The Highlights</div>
+            <ul class="hlist">
+              <li><strong>Gulangyu Island (鼓浪屿)</strong> — Take the ferry (10 min). No cars on the island. Gorgeous colonial-era buildings, tree-lined lanes, the world's only Piano Museum. Go early — crowds build by midday.</li>
+              <li><strong>Xiamen University</strong> — One of China's most beautiful campuses. Walk around Furong Lake and the famous "Love Tunnel" (芙蓉隧道) — walls covered in student murals. Great photo spot.</li>
+              <li><strong>Nanputuo Temple (南普陀寺)</strong> — Beautiful Buddhist temple right next to the university. Easy to combine into the same walk.</li>
+            </ul>
+          </div>
+          <div class="box-gold">
+            <div class="box-gold-label">🚄 Tonight: Overnight Train to Shanghai</div>
+            <p>Evening of Apr 2: Board overnight bullet train from <strong>Xiamen North (厦门北)</strong> → <strong>Shanghai Hongqiao (上海虹桥)</strong>. About 8–10 hours. Book soft sleeper berths (软卧) in advance for privacy and comfort. You'll arrive Shanghai early morning Apr 3.</p>
+          </div>
+        </div>
+        <div>
+          <div class="img-card" style="background-image:url('https://images.pexels.com/photos/34168014/pexels-photo-34168014.jpeg?auto=compress&cs=tinysrgb&w=1000&h=600&dpr=1'); background-color:#004D50; height:200px;">
+            <div class="img-card-label">Xiamen University — Furong Lake</div>
+          </div>
+          <div class="card">
+            <div class="card-head">🍜 Must-Eat in Xiamen</div>
+            <div class="food-grid">
+              <div class="food-item">
+                <div class="food-name">🍜 Satay Noodles (沙茶面)</div>
+                <div class="food-desc">Xiamen's signature dish. Rich satay-spiced broth, alkaline noodles &amp; toppings. Salty, smoky &amp; addictive.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🦪 Oyster Omelette (蚵仔煎)</div>
+                <div class="food-desc">Crispy egg omelette loaded with fresh oysters and sweet potato starch. Get it from a stall.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🥜 Peanut Soup (花生汤)</div>
+                <div class="food-desc">Slow-simmered until silky. "Rotten but not mushy, sweet but not greasy" — a local classic.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🌊 Fresh Seafood</div>
+                <div class="food-desc">It's a port city. Clams, crab, shrimp — order at any seafood restaurant and let them cook it simply.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍬 Tusu Bing (土笋冻 &amp; 土酥饼)</div>
+                <div class="food-desc">Flaky local pastry cakes with sweet fillings. Great as a snack walking Zhongshan Road.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🐛 Sandworm Jelly (土笋冻)</div>
+                <div class="food-desc">For the adventurous — jelly made from marine worms. Surprisingly refreshing with vinegar and chili.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRAIN INTERLUDE -->
+  <div class="train-band">
+    <div class="train-inner">
+      <div class="eyebrow">April 2 Evening → April 3 Morning</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); color:white; margin-bottom:0.3rem;">The Overnight Bullet Train</h2>
+      <div class="train-route">
+        <div class="train-city">Xiamen</div>
+        <div class="train-arrow">→</div>
+        <div class="train-city">Shanghai</div>
+      </div>
+      <div class="train-details">
+        ~8–10 hours overnight &nbsp;·&nbsp; Book sleeper berths well in advance via 12306 or Ctrip<br>
+        <strong style="color:var(--gold)">Xiamen North (厦门北) → Shanghai Hongqiao (上海虹桥)</strong><br><br>
+        Soft sleeper (软卧) is more private — 4 berths per cabin with a door. Hard sleeper (硬卧) is open but comfortable and cheaper. Either works. Take the upper or middle berth for more privacy.<br><br>
+        Pack snacks, a light jacket (train cars get cold at night), and something to watch offline.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ SHANGHAI -->
+  <div id="shanghai">
+    <div class="city-hero" style="background-image:url('https://images.pexels.com/photos/30685869/pexels-photo-30685869.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&dpr=1'); background-color:#200A30;">
+      <div class="city-hero-text">
+        <div class="city-day">April 3–4 · Two Days</div>
+        <div class="city-name">Shanghai</div>
+        <div class="city-tagline">Yu Garden · TeamLab Borderless · The Bund · French Concession · Xiaolongbao</div>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="two-col fade">
+        <div>
+          <div class="eyebrow">Days 7–8</div>
+          <h2 class="section-title">Shanghai</h2>
+
+          <div class="card">
+            <div class="card-head">🗓️ Day 1 (Apr 3) — Health Checkups Day</div>
+            <div class="sched">
+              <div class="sched-row">
+                <div class="sched-time">Arrival</div>
+                <div class="sched-desc">Off the overnight train — check in, drop bags, rest up.</div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Midday</div>
+                <div class="sched-desc">Mom's health checkups. Consider a hotel near Xuhui or Jing'an for easy hospital access.</div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Afternoon</div>
+                <div class="sched-desc"><strong>French Concession (法租界)</strong> — if there's energy. Wukang Road is a gentle, beautiful walk: plane trees, art deco buildings, good cafés. Very low effort, very high reward.</div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Evening</div>
+                <div class="sched-desc">Dinner at <strong>Jia Jia Tang Bao (佳家汤包)</strong> on Huanghe Road — one of Shanghai's best xiaolongbao spots. Cash only, worth any queue.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">🗓️ Day 2 (Apr 4) — The Big Day</div>
+            <div class="sched">
+              <div class="sched-row">
+                <div class="sched-time">Morning</div>
+                <div class="sched-desc"><strong>Yu Garden + Huxin Pavilion (豫园 + 湖心亭)</strong> <span class="tag tag-red">Red Pavilion ✓</span> — The red-and-gold mid-lake teahouse on a zigzag bridge. Just reopened late 2025 after restoration. Go early (~8:30AM) to beat the crowds.</div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Late AM</div>
+                <div class="sched-desc">Chenghuangmiao Bazaar (城隍庙) right next to Yu Garden — local snacks, street food, souvenirs.</div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Afternoon</div>
+                <div class="sched-desc"><strong>TeamLab Borderless Shanghai</strong> <span class="tag tag-green">AI Art ✓</span> — immersive digital art museum with glowing, morphing installations. <em>Book tickets online in advance — they sell out.</em></div>
+              </div>
+              <div class="sched-row">
+                <div class="sched-time">Evening</div>
+                <div class="sched-desc"><strong>The Bund (外滩)</strong> at golden hour and into the night. Colonial waterfront facing the Pudong skyline — one of the great city views in the world. Last dinner in Shanghai.</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="box-blue">
+            <p>📸 <strong>Possible studio photoshoot (TBD):</strong> To be confirmed — keep one of the Shanghai afternoons flexible for this.</p>
+          </div>
+        </div>
+
+        <div>
+          <div class="img-card" style="background-image:url('https://images.pexels.com/photos/36182554/pexels-photo-36182554.jpeg?auto=compress&cs=tinysrgb&w=1000&h=600&dpr=1'); background-color:#8B0000; height:200px;">
+            <div class="img-card-label">Yu Garden — Huxin Pavilion (湖心亭) · The Red Pavilion</div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">🏯 Shanghai Highlights Summary</div>
+            <ul class="hlist">
+              <li><strong>Huxin Pavilion (湖心亭)</strong> <span class="tag tag-red">Red Pavilion</span><br>The 240-year-old mid-lake teahouse at Yu Garden — Shanghai's most iconic traditional structure. Red-painted wood, upturned eaves, zigzag bridge. Freshly restored in 2025.</li>
+              <li><strong>TeamLab Borderless Shanghai</strong> <span class="tag tag-green">AI Art</span><br>Immersive room-sized digital artworks — flowing light, transforming faces, interactive environments. Book online. Huangpu District.</li>
+              <li><strong>The Bund (外滩)</strong><br>A must. The 1920s colonial waterfront facing the Pudong skyscrapers at night is unmissable. Walk both directions along the promenade.</li>
+              <li><strong>Wukang Road (武康路)</strong><br>The French Concession's best street. Plane tree canopy, art deco villas, independent boutiques, great for photos and a slow afternoon coffee.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="card-head">🍽️ Must-Eat in Shanghai</div>
+            <div class="food-grid">
+              <div class="food-item">
+                <div class="food-name">🥟 Xiaolongbao (小笼包)</div>
+                <div class="food-desc">Soup dumplings — go to Jia Jia Tang Bao (佳家汤包) or Nan Xiang Steamed Bun on Yuyuan Rd.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🥘 Shengjianbao (生煎包)</div>
+                <div class="food-desc">Pan-fried pork buns with crispy bottoms &amp; a burst of broth. Try Yang's Fry-Dumpling (小杨生煎).</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🍝 Scallion Oil Noodles</div>
+                <div class="food-desc">Noodles with caramelized scallion oil &amp; soy. Deceptively simple, deeply addictive.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🥩 Red Braised Pork (红烧肉)</div>
+                <div class="food-desc">Melt-in-your-mouth pork belly slow-braised in sweet soy sauce. Shanghai's signature dish.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🦀 Drunken Crab (醉蟹)</div>
+                <div class="food-desc">Hairy crab marinated in Shaoxing wine &amp; spices. April is just after peak season but still a good call.</div>
+              </div>
+              <div class="food-item">
+                <div class="food-name">🧆 Scallion Pancakes (葱油饼)</div>
+                <div class="food-desc">Crispy, flaky, fragrant — the ultimate Shanghai street snack. Fresh from a street stall — beats everything.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DEPARTURE -->
+  <div class="departure-band" id="departure">
+    <div class="departure-inner">
+      <div class="eyebrow">April 5 · Shanghai Pudong Airport (PVG)</div>
+      <h2 style="font-family:'Playfair Display',serif; color:white; font-size:1.6rem; margin-bottom:0.5rem;">Departure Flight · Morning Free</h2>
+      <div class="dep-time">5:20<span style="font-size:2.5rem">PM</span></div>
+      <div class="dep-sub">PVG · International Departure</div>
+      <div class="dep-note">
+        ✅ <strong style="color:var(--gold)">You have the whole morning of April 5 free!</strong><br>
+        Aim to leave your hotel around <strong style="color:white">2:30–3:00PM</strong> — Pudong Airport (PVG) is 40–60 min from central Shanghai by taxi or Maglev.<br>
+        Book a taxi via <strong>DiDi</strong>, or ask your hotel concierge to arrange a car.<br><br>
+        Use the April 5 morning for a last stroll, a proper Shanghai breakfast, or any last-minute souvenir shopping before heading to the airport.
+      </div>
+      <div class="farewell">
+        旅途平安 · Safe travels, Ellen &amp; family 🧧
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    China 2026 &nbsp;·&nbsp; March 28 – April 5 &nbsp;·&nbsp; Hong Kong · Shenzhen · Xiamen · Shanghai
+  </footer>
+
+  <script>
+    // Graceful image fallback — if a background-image URL fails, remove it so the CSS gradient shows
+    function checkBgImages() {
+      const elements = document.querySelectorAll('.city-hero, .hero-bg-img, .img-card');
+      elements.forEach(el => {
+        const style = el.getAttribute('style') || window.getComputedStyle(el).backgroundImage;
+        const urlMatch = (el.getAttribute('style') || '').match(/url\('([^']+)'\)/);
+        if (!urlMatch) return;
+        const img = new Image();
+        img.onerror = () => {
+          // Remove the failing background-image, keep the gradient/color
+          const s = el.getAttribute('style') || '';
+          el.setAttribute('style', s.replace(/background-image:[^;]+;?/, ''));
+        };
+        img.src = urlMatch[1];
+      });
+    }
+    window.addEventListener('load', checkBgImages);
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // Fade in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade').forEach(el => io.observe(el));
+  </script>
+
+</body>
+</html>
