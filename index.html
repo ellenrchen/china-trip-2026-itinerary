@@ -380,6 +380,24 @@
       border-radius: 20px;
     }
 
+    /* ─── WEATHER STRIP ─── */
+    .weather-strip {
+      display: inline-flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.4rem 1rem;
+      background: rgba(74,144,210,0.07);
+      border: 1px solid rgba(74,144,210,0.18);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      margin-bottom: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    .weather-strip .w-hi { color: #c0390b; font-weight: 700; }
+    .weather-strip .w-lo { color: #4a7fc1; font-weight: 600; }
+    .weather-strip .w-dot { opacity: 0.3; margin: 0 0.1rem; }
+
     /* ─── DIVIDER ─── */
     .divider {
       height: 1px;
@@ -582,6 +600,7 @@
         <div>
           <div class="eyebrow">You've already done Victoria Peak</div>
           <h2 class="section-title">New Sides of HK</h2>
+          <div class="weather-strip">☁️ <span class="w-hi">80°F</span> <span class="w-dot">/</span> <span class="w-lo">71°F</span> <span class="w-dot">·</span> Partly cloudy with a chance of rain — light jacket in the evening</div>
           <div class="highlight-bar">
             You land ~5AM. Take the Airport Express or cross-border coach to Shenzhen, check in, freshen up — then head back into HK via the MTR for a proper afternoon. Focus on <strong>Kowloon-side</strong> to keep travel efficient.
           </div>
@@ -653,6 +672,7 @@
         <div>
           <div class="eyebrow">Day 4 — Full Day</div>
           <h2 class="section-title">The Best of SZ</h2>
+          <div class="weather-strip">🌧️ <span class="w-hi">77°F</span> <span class="w-dot">/</span> <span class="w-lo">68°F</span> <span class="w-dot">·</span> Rain likely — Mar 31 is the rainiest day of the month here. Bring an umbrella.</div>
           <div class="card">
             <div class="card-head">🗺️ Things to Do</div>
             <ul class="hlist">
@@ -727,6 +747,7 @@
 
           <div class="card">
             <div class="card-head">🗓️ Day 1 (Apr 1) — Coastal Hotel Zone</div>
+            <div class="weather-strip" style="margin-top:0.6rem">⛅ <span class="w-hi">72°F</span> <span class="w-dot">/</span> <span class="w-lo">60°F</span> <span class="w-dot">·</span> Mild and pleasant — occasional showers possible, umbrella handy</div>
             <div class="sched">
               <div class="sched-row">
                 <div class="sched-time">Arrival</div>
@@ -745,6 +766,7 @@
 
           <div class="card">
             <div class="card-head">🗓️ Day 2 (Apr 2) — Explore the City</div>
+            <div class="weather-strip" style="margin-top:0.6rem">🌦️ <span class="w-hi">72°F</span> <span class="w-dot">/</span> <span class="w-lo">59°F</span> <span class="w-dot">·</span> Coolest day in Xiamen — light layer + umbrella, showers likely</div>
             <div class="sched">
               <div class="sched-row">
                 <div class="sched-time">Morning</div>
@@ -843,6 +865,7 @@
 
           <div class="card">
             <div class="card-head">🗓️ Day 1 (Apr 3) — Health Checkups Day</div>
+            <div class="weather-strip" style="margin-top:0.6rem">🧥 <span class="w-hi">61°F</span> <span class="w-dot">/</span> <span class="w-lo">47°F</span> <span class="w-dot">·</span> Noticeably cooler than Xiamen — pack a real jacket. Overcast.</div>
             <div class="sched">
               <div class="sched-row">
                 <div class="sched-time">Arrival</div>
@@ -865,6 +888,7 @@
 
           <div class="card">
             <div class="card-head">🗓️ Day 2 (Apr 4) — The Big Day</div>
+            <div class="weather-strip" style="margin-top:0.6rem">⛅ <span class="w-hi">61°F</span> <span class="w-dot">/</span> <span class="w-lo">53°F</span> <span class="w-dot">·</span> Cool and partly cloudy — light rain possible. Layers for the Bund at night.</div>
             <div class="sched">
               <div class="sched-row">
                 <div class="sched-time">Morning</div>
@@ -951,8 +975,9 @@
     <div class="section-body">
       <div class="two-col fade">
         <div>
-          <div class="eyebrow">April 5</div>
+          <div class="eyebrow">April 5–6</div>
           <h2 class="section-title">How to Spend the Morning</h2>
+          <div class="weather-strip">🌤️ Apr 5: <span class="w-hi">63°F</span> <span class="w-dot">/</span> <span class="w-lo">52°F</span> <span class="w-dot">·</span> Mostly dry &nbsp;<span class="w-dot">|</span>&nbsp; Apr 6: <span class="w-hi">65°F</span> <span class="w-dot">/</span> <span class="w-lo">52°F</span> <span class="w-dot">·</span> Mild and clear</div>
           <div class="card">
             <div class="card-head">🗓️ April 5 — Last Day Schedule</div>
             <div class="sched">
